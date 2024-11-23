@@ -1,0 +1,18 @@
+{
+  "name": "free-sms-lbc",
+  "version": "1.0.0",
+  "description": "Free SMS Website using LBC API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "Churchill",
+  "license": "MIT"
+}
