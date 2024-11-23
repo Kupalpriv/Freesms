@@ -8,18 +8,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Free SMS Service</h1>
+        <h1 class="animated-title">Free SMS Service</h1>
         <p>Send free SMS within the Philippines using LBC API</p>
         <form id="smsForm">
-            <label for="number">Phone Number (PH only)</label>
-            <input type="text" id="number" name="number" placeholder="09123456789" required>
+            <div class="input-group">
+                <label for="number">Phone Number (PH only)</label>
+                <input type="text" id="number" name="number" placeholder="09123456789" required>
+            </div>
             
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+            <div class="input-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+            </div>
             
-            <button type="submit">Send SMS</button>
+            <button type="submit" class="fancy-button">Submit</button>
         </form>
-        <div id="response"></div>
+        <div id="response" class="response"></div>
     </div>
     <footer>
         <div class="footer-container">
@@ -39,6 +43,7 @@
 
             const responseDiv = document.getElementById('response');
             responseDiv.textContent = 'Sending...';
+            responseDiv.classList.add('visible');
 
             try {
                 const res = await fetch('/send-sms', {
