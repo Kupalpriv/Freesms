@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free SMS - LBC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Free SMS Service</h1>
+        <p>Send free SMS within the Philippines using LBC API</p>
+        <form id="smsForm">
+            <label for="number">Phone Number (PH only)</label>
+            <input type="text" id="number" name="number" placeholder="09123456789" required>
+            
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <div id="response"></div>
+    </div>
+    <footer>
+        <p>All Rights Reserved Churchill</p>
+        <div class="footer-design">
+            <div class="footer-circle"></div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('smsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const number = document.getElementById('number').value;
+            const message = document.getElementById('message').value;
+
+            const responseDiv = document.getElementById('response');
+            responseDiv.textContent = 'Sending...';
+
+            try {
+                const res = await fetch('/send-sms', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ number, message }),
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    responseDiv.textContent = data.message;
+                } else {
+                    responseDiv.textContent = data.error || 'Failed to send SMS.';
+                }
+            } catch (err) {
+                responseDiv.textContent = 'Error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
